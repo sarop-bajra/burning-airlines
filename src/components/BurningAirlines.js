@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+const FLIGHTS_URL = 'http://localhost:3000/planes';
 
 class BurningAirlines extends React.Component {
 
@@ -10,7 +11,7 @@ class BurningAirlines extends React.Component {
 
   componentDidMount(){
     console.log('Loaded');
-    axios.get('https://api.mocki.io/v1/b043df5a')
+    axios.get(FLIGHTS_URL)
     .then(res => {
       console.log(res.data);
       this.setState({flights: res.data});
@@ -22,14 +23,17 @@ class BurningAirlines extends React.Component {
 
   render() {
     return (
-      <div className="ba">
-        <h1>Burning Airlines</h1>
+      <div>
+
           <div>
           {
-            // this.state.flights.reverse().map( flight => {return <div className="flight" key={ flight.city }>{ flight.content }</div>})
-
-            this.state.flights.map( flight => {
-              return <li key={ flight.city }>{flight.name}</li>
+            this.state.flights.reverse().map( flight => {
+              return <div className="flight">
+              <li key={flight.id}> Flight Name: {flight.name}
+                <li>Rows: {flight.rows}</li>
+                <li>Columns: {flight.columns}</li>
+              </li>
+              </div>
             }) // map
           }
           </div>
