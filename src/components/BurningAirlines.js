@@ -1,20 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 
-const FLIGHTS_URL = 'http://localhost:3000/planes';
+const PLANES_URL = 'http://localhost:3000/planes';
 
 class BurningAirlines extends React.Component {
 
   state = {
-    flights: []
+    planes: []
   };
 
   componentDidMount(){
     console.log('Loaded');
-    axios.get(FLIGHTS_URL)
+    axios.get(PLANES_URL)
     .then(res => {
       console.log(res.data);
-      this.setState({flights: res.data});
+      this.setState({planes: res.data});
 
     })
     .catch( err => console.warn(err));
@@ -27,11 +27,11 @@ class BurningAirlines extends React.Component {
 
           <div>
           {
-            this.state.flights.reverse().map( flight => {
+            this.state.planes.reverse().map( plane => {
               return <div className="flight">
-              <li key={flight.id}> Flight Name: {flight.name}
-                <li>Rows: {flight.rows}</li>
-                <li>Columns: {flight.columns}</li>
+              <li key={plane.id}> Plane Name: {plane.name}
+                <li>Rows: {plane.rows}</li>
+                <li>Columns: {plane.columns}</li>
               </li>
               </div>
             }) // map

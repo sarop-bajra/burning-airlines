@@ -44,7 +44,7 @@ class Search extends React.Component {
     ev.preventDefault();
 
     this.state.flights.map( flight => {
-      if (this.state.origin === flight.origin || this.state.origin === flight.destination || this.state.destination === flight.destination || this.state.destination === flight.destination  ) {
+      if (this.state.origin === flight.origin && this.state.destination === flight.destination) {
         console.log(flight);
 
         this.setState({
