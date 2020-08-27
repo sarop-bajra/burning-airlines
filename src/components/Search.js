@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import '../Search.css';
 
 import FlightSearchResults from './FlightSearchResults';
 
@@ -88,35 +89,31 @@ class Search extends React.Component {
           <FlightSearchResults flights={this.state.flights}/>
         }
 
-        <p>{this.state.origin}</p>
-        <p>{this.state.destination}</p>
 
-        <div>
-        <table class="table">
-        <thead>
-            <th>Date</th>
-            <th>Flight No.</th>
-            <th>From</th>
-            <th>To</th>
-            <th>Plane</th>
-            <th>Total Seats</th>
-            <th>Booked Seats</th>
-        </thead>
-          {
-            this.state.searchedFlights.map( flight => (<Link to={`/flight/${flight.id}`}>
-              <tbody>
+        <table className="flight_table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Flight No.</th>
+              <th>From</th>
+              <th>To</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+        {
+          this.state.searchedFlights.map( flight => (<Link to={`/flight/${flight.id}`}>
+            <tr>
               <td>{flight.date}</td>
               <td>{flight.id}</td>
               <td>{flight.origin}</td>
               <td>{flight.destination}</td>
-              {/* <td>{flight.plane.name}</td>
-              <td>{flight.plane.columns * flight.plane.rows}</td>
-              <td>{flight.reservations.length}</td> */}
-              </tbody>
-            </Link>))
-          }
+            </tr>
+          </Link>))
+        }
+        </tbody>
         </table>
-        </div>
+
       </div>
     );
 

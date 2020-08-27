@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-const FLIGHTS_URL = 'http://localhost:3000/flights';
+const FLIGHTS_URL = 'http://localhost:3000/flightresults';
 const PLANES_URL = 'http://localhost:3000/planes';
 
 class Flight extends React.Component {
@@ -44,48 +44,15 @@ class Flight extends React.Component {
 
   componentDidMount(){
     console.log('Loaded');
-
-    axios.get(FLIGHTS_URL)
+    axios.get(FLIGHTS_URL, {
+      params: {
+        flightId: this.props.match.params.query
+      }
+    })
     .then(res => {
       console.log(res.data);
-      this.setState({flights: res.data});
-
-      this.state.flights.map( flight => {
-        if(parseInt(this.props.match.params.query) === flight.id){
-          this.setState({origin: flight.origin});
-          this.setState({destination: flight.destination});
-          this.setState({date: flight.date});
-          this.setState({planeID: flight.plane_id});
-          console.log(this.state.planeID);
-
-        }
-      });
-
     })
     .catch( err => console.warn(err));
-
-
-
-
-    axios.get(PLANES_URL)
-    .then(res => {
-      console.log(res.data);
-      this.setState({planes: res.data});
-
-      this.state.planes.map( plane => {
-        if(this.state.planeID === plane.id) {
-
-          this.setState({name: plane.name});
-          this.setState({columns: plane.columns});
-          this.setState({rows: plane.rows});
-          console.log(this.state.name);
-
-        } // if
-      }); // map
-
-    }) // .then
-    .catch( err => console.warn(err));
-
 
   } // componentDidMount
 

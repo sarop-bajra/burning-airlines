@@ -1,0 +1,28 @@
+table.flight_table {
+  box-sizing: border-box;
+  border-collapse: collapse;
+  margin: 0 auto;
+  width: 600px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  width: 600px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #FBBF00;
+  color: black;
+}
