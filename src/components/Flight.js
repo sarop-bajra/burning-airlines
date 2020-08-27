@@ -27,11 +27,11 @@ class Flight extends React.Component {
     for(let i = 0; i < this.state.rows; i++){
       let rows = [];
       for (let j = 0; j < this.state.columns; j++) {
-        rows.push(<td onClick={this.handleClick}>{`Row ${j+1}`}</td>)
+        rows.push(<td className="seat" onClick={this.handleClick}>{`Row ${j+1}`}</td>)
       }
       table.push(<tr>{rows}</tr>)
     }
-    
+
     return table
   } // create table
 

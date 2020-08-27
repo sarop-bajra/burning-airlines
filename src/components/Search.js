@@ -9,44 +9,41 @@ const FLIGHTS_URL = 'http://localhost:3000/flights';
 class Search extends React.Component {
 
   state = {
-    origin:'',
-    destination:'',
+    origin: '',
+    destination: '',
     searchedFlights: [],
     flights: []
   };
 
-  componentDidMount(){
-    console.log('Loaded');
-    axios.get(FLIGHTS_URL)
-    .then(res => {
-      console.log(res.data);
-      this.setState({flights: res.data});
-    })
-    .catch( err => console.warn(err));
-  }
 
   handleChangeOrigin = (ev) => {
-    console.log(ev.target.value);
-    this.setState({origin:ev.target.value})
-  }
-
+    this.setState({origin: ev.target.value});
+    console.log(this.state.origin);
+  };
+  
   handleChangeDestination = (ev) => {
-    console.log(ev.target.value);
-    this.setState({destination:ev.target.value})
-  }
-
+    this.setState({destination: ev.target.value});
+    console.log(this.state.destination);
+  };
+  
   handleSubmit = (ev) => {
     ev.preventDefault();
-    this.state.flights.map( flight => {
-      if (this.state.origin === flight.origin && this.state.destination === flight.destination) {
-        console.log(flight);
-        this.setState({
-          searchedFlights: [ ...this.state.searchedFlights, flight ]
-        });
-        console.log(this.state.searchedFlights);
-      } // if
-    }) // map
-  }
+    console.log(this.state.destination);
+    console.log(this.state.origin);
+    axios.get(FLIGHTS_URL, {
+      params: {
+        origin: this.state.origin,
+        destination: this.state.destination
+      }
+    })
+    .then(res => {
+      console.log(res.data);
+      this.setState({
+        searchedFlights: res.data
+      });
+    })
+    .catch(err => console.warn(err));
+  };
 
   render(){
     return(
@@ -55,26 +52,30 @@ class Search extends React.Component {
 
           <label>
             Origin:
-            <select value={this.state.value} onChange={this.handleChangeOrigin}>
+            <select onChange={this.handleChangeOrigin}>
             <option value="">Select...</option>
-            {
-              this.state.flights.reverse().map( flight => {
-                return <option value={flight.origin}> {flight.origin} </option>
-              }) // map
-            }
+            <option value="Sydney">Sydney</option>
+            <option value="Melbourne">Melbourne</option>
+            <option value="Adelaide">Adelaide</option>
+            <option value="Perth">Perth</option>
+            <option value="Hobart">Hobart</option>
+            <option value="Canberra">Canberra</option>
+            <option value="Brisbane">Brisbane</option>
             </select>
-          </label>
+            </label>
           <br/>
 
           <label>
             Destination:
-            <select value={this.state.value} onChange={this.handleChangeDestination}>
+            <select onChange={this.handleChangeDestination}>
             <option value="">Select...</option>
-            {
-              this.state.flights.reverse().map( flight => {
-                return <option value={flight.destination}> {flight.destination} </option>
-              }) // map
-            }
+            <option value="Sydney">Sydney</option>
+            <option value="Melbourne">Melbourne</option>
+            <option value="Adelaide">Adelaide</option>
+            <option value="Perth">Perth</option>
+            <option value="Hobart">Hobart</option>
+            <option value="Canberra">Canberra</option>
+            <option value="Brisbane">Brisbane</option>
             </select>
           </label>
           <br/>
@@ -92,7 +93,7 @@ class Search extends React.Component {
 
         <div>
         <table class="table">
-        <tr>
+        <thead>
             <th>Date</th>
             <th>Flight No.</th>
             <th>From</th>
@@ -100,10 +101,10 @@ class Search extends React.Component {
             <th>Plane</th>
             <th>Total Seats</th>
             <th>Booked Seats</th>
-        </tr>
+        </thead>
           {
             this.state.searchedFlights.map( flight => (<Link to={`/flight/${flight.id}`}>
-              <tr>
+              <tbody>
               <td>{flight.date}</td>
               <td>{flight.id}</td>
               <td>{flight.origin}</td>
@@ -111,7 +112,7 @@ class Search extends React.Component {
               {/* <td>{flight.plane.name}</td>
               <td>{flight.plane.columns * flight.plane.rows}</td>
               <td>{flight.reservations.length}</td> */}
-              </tr>
+              </tbody>
             </Link>))
           }
         </table>
