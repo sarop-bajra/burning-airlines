@@ -13,7 +13,6 @@ class Search extends React.Component {
     destination:'',
     searchedFlights: [],
     flights: []
-
   };
 
   componentDidMount(){
@@ -22,40 +21,31 @@ class Search extends React.Component {
     .then(res => {
       console.log(res.data);
       this.setState({flights: res.data});
-
     })
     .catch( err => console.warn(err));
-
   }
 
   handleChangeOrigin = (ev) => {
     console.log(ev.target.value);
     this.setState({origin:ev.target.value})
-
   }
 
   handleChangeDestination = (ev) => {
     console.log(ev.target.value);
     this.setState({destination:ev.target.value})
-
   }
 
   handleSubmit = (ev) => {
     ev.preventDefault();
-
     this.state.flights.map( flight => {
-      if (this.state.origin === flight.origin || this.state.origin === flight.destination || this.state.destination === flight.destination || this.state.destination === flight.destination  ) {
+      if (this.state.origin === flight.origin && this.state.origin === flight.destination) {
         console.log(flight);
-
         this.setState({
           searchedFlights: [ ...this.state.searchedFlights, flight ]
         });
         console.log(this.state.searchedFlights);
-
-
       } // if
     }) // map
-
   }
 
   render(){
@@ -95,21 +85,16 @@ class Search extends React.Component {
           (this.state.flights.length > 0)
           &&
           <FlightSearchResults flights={this.state.flights}/>
-
         }
 
         <p>{this.state.origin}</p>
         <p>{this.state.destination}</p>
 
-
         <div>
         {
-          this.state.searchedFlights.map( flight => (
-            <Link to={`/flight/
-            ${flight.id}`}><li>{flight.id}</li></Link>
-          ))
+          this.state.searchedFlights.map( flight => (<Link to={`/flight/${flight.id}`}><li>{flight.id}</li></Link>))
         }
-      </div>
+        </div>
 
       </div>
     );

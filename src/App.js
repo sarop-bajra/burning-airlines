@@ -10,6 +10,7 @@ import Search from './components/Search';
 
 
 class App extends React.Component {
+  
   render(){
 
     return (
@@ -20,15 +21,18 @@ class App extends React.Component {
         <nav>
           <Link to="/">Home</Link> | &nbsp;
           <Link to="/burningairlines">BurningAirlines</Link> | &nbsp;
-          <Link to="/flight">Flight</Link> | &nbsp;
           <Link to="/search">Search</Link> | &nbsp;
 
         </nav>
+
           <Route exact path="/" component={ Home }/>
           <Route exact path="/burningairlines" component={ BurningAirlines }/>
-          <Route exact path="/flight/:query" component={ Flight }/>
           <Route exact path="/search" component={ Search }/>
+          <Route exact path="/flight/:query" component={ Flight }/>
       </Router>
+      <hr/>
+
+      <hr/>
       &copy; 2020 Flamin' Gallahs
       </div>
     ); // return

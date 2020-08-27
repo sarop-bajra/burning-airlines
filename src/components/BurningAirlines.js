@@ -15,10 +15,8 @@ class BurningAirlines extends React.Component {
     .then(res => {
       console.log(res.data);
       this.setState({flights: res.data});
-
     })
     .catch( err => console.warn(err));
-
   }
 
   render() {
