@@ -11,12 +11,12 @@ th, td {
   width: 600px;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+td:hover {
+  background-color: #ddd;
 }
 
-tr:hover {
-  background-color: #ddd;
+td {
+  cursor: pointer;
 }
 
 th {
@@ -25,4 +25,9 @@ th {
   text-align: left;
   background-color: #FBBF00;
   color: black;
+}
+
+.seat_map {
+  width: 800px;
+  margin: 0 auto;
 }

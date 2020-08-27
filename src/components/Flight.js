@@ -25,7 +25,7 @@ class Flight extends React.Component {
     for(let i = 0; i < this.state.rows; i++){
       let rows = [];
       for (let j = 0; j < this.state.columns; j++) {
-        rows.push(<td className="seat" onClick={this.handleClick}>{`Row ${j+1}`}</td>)
+        rows.push(<td className="seat" onClick={this.handleClick}>{`${String.fromCharCode(j+65)}${i+1}`}</td>)
       }
       table.push(<tr>{rows}</tr>)
     }
@@ -59,7 +59,6 @@ class Flight extends React.Component {
     })
     .catch( err => console.warn(err));
 
-
   } // componentDidMount
 
   render(){
@@ -75,7 +74,7 @@ class Flight extends React.Component {
         <h3>{this.state.name}</h3>
         <div>
 
-          <table>
+          <table className="seat_map">
             {this.createTable()}
           </table>
           <p>{this.state.seat}</p>
