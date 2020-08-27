@@ -38,7 +38,7 @@ class Search extends React.Component {
   handleSubmit = (ev) => {
     ev.preventDefault();
     this.state.flights.map( flight => {
-      if (this.state.origin === flight.origin && this.state.origin === flight.destination) {
+      if (this.state.origin === flight.origin && this.state.destination === flight.destination) {
         console.log(flight);
         this.setState({
           searchedFlights: [ ...this.state.searchedFlights, flight ]
@@ -91,11 +91,31 @@ class Search extends React.Component {
         <p>{this.state.destination}</p>
 
         <div>
-        {
-          this.state.searchedFlights.map( flight => (<Link to={`/flight/${flight.id}`}><li>{flight.id}</li></Link>))
-        }
+        <table class="table">
+        <tr>
+            <th>Date</th>
+            <th>Flight No.</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Plane</th>
+            <th>Total Seats</th>
+            <th>Booked Seats</th>
+        </tr>
+          {
+            this.state.searchedFlights.map( flight => (<Link to={`/flight/${flight.id}`}>
+              <tr>
+              <td>{flight.date}</td>
+              <td>{flight.id}</td>
+              <td>{flight.origin}</td>
+              <td>{flight.destination}</td>
+              {/* <td>{flight.plane.name}</td>
+              <td>{flight.plane.columns * flight.plane.rows}</td>
+              <td>{flight.reservations.length}</td> */}
+              </tr>
+            </Link>))
+          }
+        </table>
         </div>
-
       </div>
     );
 

@@ -10,7 +10,7 @@ import Search from './components/Search';
 
 
 class App extends React.Component {
-  
+
   render(){
 
     return (
@@ -21,6 +21,7 @@ class App extends React.Component {
         <nav>
           <Link to="/">Home</Link> | &nbsp;
           <Link to="/burningairlines">BurningAirlines</Link> | &nbsp;
+        
           <Link to="/search">Search</Link> | &nbsp;
 
         </nav>
