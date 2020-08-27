@@ -16,8 +16,31 @@ class Flight extends React.Component {
     planes: [],
     name:'',
     columns: 0,
+    seatRow: 0,
+    seatColumn: 0,
     rows: 0
   };
+
+
+  createTable = () => {
+    let table = [];
+    for(let i = 0; i < this.state.rows; i++){
+      let rows = [];
+      for (let j = 0; j < this.state.columns; j++) {
+        rows.push(<td onClick={this.handleClick}>{`Row ${j+1}`}</td>)
+      }
+      table.push(<tr>{rows}</tr>)
+    }
+    
+    return table
+  } // create table
+
+  handleClick = (ev) => {
+    console.log(ev.target.value);
+    this.setState({seat:ev.target.value})
+    console.log(this.state.seat);
+
+  }
 
   componentDidMount(){
     console.log('Loaded');
@@ -58,17 +81,7 @@ class Flight extends React.Component {
 
           console.log(this.state.name);
 
-          // this.createTable = () => {
-          //   let table = [];
-          //   for(let i = 0; i < this.state.rows; i++){
-          //     let children = [];
-          //     for (let j = 0; j < this.state.columns; j++) {
-          //       children.push(<td>{`Column ${j+1}`}</td>)
-          //     }
-          //     table.push(<tr>{children}</tr>)
-          //   }
-          //   return table
-          // } // create table
+
 
         } // if
       }); // map
@@ -88,11 +101,11 @@ class Flight extends React.Component {
         <div>
 
 
-        // <table>
-        //   {this.createTable()}
-        // </table>
+        <table>
+          {this.createTable()}
+        </table>
 
-
+        <p>{this.state.seat}</p>
 
 
         </div>

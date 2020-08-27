@@ -20,7 +20,7 @@ class App extends React.Component {
         <nav>
           <Link to="/">Home</Link> | &nbsp;
           <Link to="/burningairlines">BurningAirlines</Link> | &nbsp;
-          <Link to="/flight">Flight</Link> | &nbsp;
+        
           <Link to="/search">Search</Link> | &nbsp;
 
         </nav>
