@@ -65,26 +65,30 @@ class Search extends React.Component {
 
           <label>
             Origin:
-            <select value={this.state.value} onChange={this.handleChangeOrigin}>
+            <select value={this.state.origin} onChange={this.handleChangeOrigin}>
             <option value="">Select...</option>
-            {
-              this.state.flights.reverse().map( flight => {
-                return <option value={flight.origin}> {flight.origin} </option>
-              }) // map
-            }
+            <option value="Sydney">Sydney</option>
+            <option value="Melbourne">Melbourne</option>
+            <option value="Adelaide">Adelaide</option>
+            <option value="Perth">Perth</option>
+            <option value="Hobart">Hobart</option>
+            <option value="Canberra">Canberra</option>
+            <option value="Brisbane">Brisbane</option>
             </select>
-          </label>
+            </label>
           <br/>
 
           <label>
             Destination:
-            <select value={this.state.value} onChange={this.handleChangeDestination}>
+            <select value={this.state.destination} onChange={this.handleChangeDestination}>
             <option value="">Select...</option>
-            {
-              this.state.flights.reverse().map( flight => {
-                return <option value={flight.destination}> {flight.destination} </option>
-              }) // map
-            }
+            <option value="Sydney">Sydney</option>
+            <option value="Melbourne">Melbourne</option>
+            <option value="Adelaide">Adelaide</option>
+            <option value="Perth">Perth</option>
+            <option value="Hobart">Hobart</option>
+            <option value="Canberra">Canberra</option>
+            <option value="Brisbane">Brisbane</option>
             </select>
           </label>
           <br/>
